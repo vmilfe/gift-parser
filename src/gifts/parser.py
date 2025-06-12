@@ -49,7 +49,7 @@ async def get_user_gifts(client: Client, user_id: int, username: str):
     result = []
     try:
         async for gift in client.get_user_gifts(user_id):
-            if gift.is_limited == True and gift.is_upgraded == None and gift.id in GIFT_IDS:
+            if gift.is_limited == True or gift.is_upgraded == None or gift.id in GIFT_IDS:
                 result.append({"gift": gift.id, "user_id": user_id, "username": username})
         
     except Exception as e:
